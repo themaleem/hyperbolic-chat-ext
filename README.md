@@ -15,7 +15,7 @@ This repository contains a simple automated chatbot built using the [Hyperbolic 
 
 ## Prerequisites
 - Python 3.6+
-- A Hyperbolic Labs API key (replace the placeholder in the code with your own key)
+- A [Hyperbolic API key](https://app.hyperbolic.xyz/settings) (replace the placeholder in the code with your own key)
 - Internet connection for API requests
 
 ## Setup
