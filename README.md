@@ -33,7 +33,6 @@ This repository contains a simple automated chatbot built using the [Hyperbolic 
    ```bash
    python -m venv venv
    source venv/bin/activate
-   pip install -r requirements.txt
    ```
 4. **Configure the API Key**
 
