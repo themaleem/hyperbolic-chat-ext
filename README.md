@@ -18,15 +18,15 @@ This repository contains a simple automated chatbot built using the [Hyperbolic 
 - A [Hyperbolic API key](https://app.hyperbolic.xyz/settings) (replace the placeholder in the code with your own key)
 
 ## Setup
-1. **Clone the Repository**
+1. **Install Packages**
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   sudo apt install git screen python3 python3-pip python3-venv -y
+   ```
+2. **Clone the Repository**
    ```bash
    git clone https://github.com/0xmoei/chatbot-app.git
    cd chatbot-app
-   ```
-2. **Install Python and Screen**
-   ```bash
-   sudo apt update && sudo apt upgrade -y
-   sudo apt install screen python3 python3-pip python3-venv -y
    ```
 3. **Install Dependencies**
    ```bash
