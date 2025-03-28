@@ -8,54 +8,49 @@ This repository contains a simple automated chatbot built using the [Hyperbolic 
 
 ## Features
 - Contains a list of 100 unique questions on diverse topics.
-- Randomly selects and asks questions without repetition.
+- Randomly selects and asks questions based on chosen chat mode.
 - Integrates with the Hyperbolic Labs API to fetch answers.
 - Adds random delays (1-2 minutes) between questions to simulate natural pacing.
 - Built with Python and the `requests` library.
 
 ## Prerequisites
-- Python 3.6+
-- A [Hyperbolic API key](https://app.hyperbolic.xyz/settings) (replace the placeholder in the code with your own key)
+- Python >= 3.6
+- A [Hyperbolic API key](https://app.hyperbolic.xyz/settings)
 
 ## Setup
-1. **Install Packages**
+1. **Install Packages and Dependencies**
    ```bash
    sudo apt update && sudo apt upgrade -y
-   sudo apt install git screen python3 python3-pip python3-venv -y
+   sudo apt install git screen python3 python3-pip python3-venv -y python3-requests
    ```
 2. **Clone the Repository**
    ```bash
-   git clone https://github.com/0xmoei/chatbot-app.git
+   git clone https://github.com/themaleem/hyperbolic-chat-ext
    cd chatbot-app
    ```
-3. **Install Dependencies**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install requests
-   ```
-4. **Configure the API Key**
+3. **Initialize new screen**
 
-Replace the `YOUR_API_KEY_HERE` in `chatbot.py` with your own [Hyperbolic API Key](https://app.hyperbolic.xyz/settings):
+* Helps you run the script on a minimizable screen in background. 
    ```bash
-nano chatbot.py
+screen -S chat
    ```
-5. **Run the Chatbot**
+4. **Run the Chatbot**
 
 Execute the script to start the chatbot:
    ```bash
    python3 chatbot.py
    ```
-* You can enter `screen -S chat` before running it to run the script on a minimizable screen in background.
 * To minimize screen: `CTRL+A+D`
 * To kill screen: `Ctrl+C` or command: `screen -XS chat quit`
 
 ## Usage
 Once running, the chatbot will:
+* Ask what chat mode you want to use, either fixed to 100 questions or run indefinitely.
+* Request for your [Hyperbolic Labs](https://app.hyperbolic.xyz/) API Key.
 * Print each of the 100 questions one by one.
-* Fetch and display answers from the Hyperbolic Labs API.
+* Fetch and display answers via the Hyperbolic Labs API.
 * Pause for a random interval (60-120 seconds) between questions.
-* Stop after completing all 100 questions.
+* Stop after completing all 100 questions (or run indefinitely, depending on user's choice)
 
 Example output:
 ```
@@ -68,6 +63,7 @@ Waiting 87.3 seconds before next question...
 * The API key in the code is a placeholder. You’ll need to sign up at [Hyperbolic Labs](https://app.hyperbolic.xyz/) to get your own.
 * Be mindful of API usage limits and costs depending on your Hyperbolic Labs plan.
 * Feel free to modify the `questions` list in `chatbot.py` to suit your interests!
+* Adapted from [0xMoei](https://github.com/0xmoei/chatbot-app.git)
 
 
 
