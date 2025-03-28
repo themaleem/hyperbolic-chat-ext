@@ -1,13 +1,19 @@
-import requests
-import time
-import random
+import requests, time, random, sys
+
 
 # API Configuration
 URL = "https://api.hyperbolic.xyz/v1/chat/completions"
-HEADERS = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer YOUR_API_KEY_HERE"
-}
+
+def get_headers():
+    user_input = input(f"Enter your Hyperbolic API key: ").strip()
+    if not user_input:
+        print("API Key is required for this script to continue. Please start again.")
+        sys.exit(1)
+    
+    return {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {user_input}"
+        }
 
 # List of 100 unique questions
 questions = [
@@ -112,11 +118,8 @@ questions = [
     "What’s the future of renewable energy?"
 ]
 
-# Verify we have 100 questions
-print(f"Total questions loaded: {len(questions)}")
-
 # Function to send API request
-def send_chat_request(question):
+def send_chat_request(question,headers):
     data = {
         "messages": [
             {
@@ -131,7 +134,7 @@ def send_chat_request(question):
     }
     
     try:
-        response = requests.post(URL, headers=HEADERS, json=data)
+        response = requests.post(URL, headers=headers, json=data)
         response.raise_for_status()
         result = response.json()
         answer = result['choices'][0]['message']['content']
@@ -139,32 +142,50 @@ def send_chat_request(question):
     except Exception as e:
         return f"Error: {str(e)}"
 
+
+
 # Main bot loop
-def run_chat_bot():
+def run_chat_bot(questions_mode):
     print("Starting automated chat bot...")
-    available_questions = questions.copy()  # Work with a copy to preserve original list
-    
-    for i in range(100):  # Fixed to 100 since we have exactly 100 questions
-        if not available_questions:
-            print("Ran out of questions unexpectedly!")
-            break
-        
-        # Pick and remove a random question to avoid repetition
-        question = random.choice(available_questions)
-        available_questions.remove(question)
-        
+    headers =  get_headers()
+
+    i = 0
+    while len(questions) > 0:
+        # Get the next question
+        question = random.choice(questions)
+        if questions_mode == "fixed":
+            if not questions:
+                print("Ran out of questions unexpectedly!")
+                break
+            questions.remove(question)
+
         # Send request and print results
         print(f"\nQuestion {i + 1}: {question}")
-        answer = send_chat_request(question)
+        answer = send_chat_request(question,headers=headers)
         print(f"Answer: {answer}")
-        
+
         # Random delay between 1-2 minutes (60-120 seconds)
         delay = random.uniform(60, 120)
         print(f"Waiting {delay:.1f} seconds before next question...")
         time.sleep(delay)
-    
-    print("\nCompleted 100 questions!")
+        i += 1
+
+    print("\nCompleted all questions!")
+
 
 # Run the bot
 if __name__ == "__main__":
-    run_chat_bot()
+    print("Choose chatbot mode:")
+    print("1 - Use predefined 100 questions")
+    print("2 - Run indefinitely with random questions")
+    
+    while True:
+        choice = input("Enter your choice (1 or 2): ")
+        if choice == "1":
+            run_chat_bot("fixed")
+            break
+        elif choice == "2":
+            run_chat_bot("random")
+            break
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
