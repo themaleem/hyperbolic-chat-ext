@@ -30,19 +30,19 @@ This repository contains a simple automated chatbot built using the [Hyperbolic 
    ```
 3. **Initialize new  minimizable screen**
    ```bash
-   screen -S chat
+   screen -S hyperbolic-chat
    ```
 4. **Execute the script to start the chatbot**
    ```bash
    python3 chatbot.py
    ```
 * To minimize screen: `CTRL+A+D`
-* To kill screen: `Ctrl+C` or command: `screen -XS chat quit`
+* To kill screen: `Ctrl+C` or command: `screen -XS hyperbolic-chat quit`
 
 ## Usage
 Once running, the chatbot will:
 * Ask what chat mode you want to use, either fixed to 100 questions or run indefinitely.
-* Request for your [Hyperbolic Labs](https://app.hyperbolic.xyz/) API Key.
+* Request for your [Hyperbolic Labs](https://app.hyperbolic.xyz/settings) API Key.
 * Print each of the 100 questions one by one.
 * Fetch and display answers via the Hyperbolic Labs API.
 * Pause for a random interval (60-120 seconds) between questions.
