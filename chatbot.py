@@ -164,8 +164,8 @@ def run_chat_bot(questions_mode):
         answer = send_chat_request(question,headers=headers)
         print(f"Answer: {answer}")
 
-        # Random delay between 1-2 minutes (60-120 seconds)
-        delay = random.uniform(60, 120)
+        # Random delay between 10-20 seconds (10-20 seconds)
+        delay = random.uniform(10, 20)
         print(f"Waiting {delay:.1f} seconds before next question...")
         time.sleep(delay)
         i += 1
