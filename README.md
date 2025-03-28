@@ -28,15 +28,11 @@ This repository contains a simple automated chatbot built using the [Hyperbolic 
    git clone https://github.com/themaleem/hyperbolic-chat-ext
    cd chatbot-app
    ```
-3. **Initialize new screen**
-
-* Helps you run the script on a minimizable screen in background. 
+3. **Initialize new  minimizable screen**
    ```bash
-screen -S chat
+   screen -S chat
    ```
-4. **Run the Chatbot**
-
-Execute the script to start the chatbot:
+4. **Execute the script to start the chatbot**
    ```bash
    python3 chatbot.py
    ```
